@@ -154,3 +154,17 @@ This project demonstrates practical knowledge of UI automation, API validation, 
 It was developed as a hands-on learning project to strengthen my automation testing skills and build a professional GitHub portfolio.
 
 **Note:** The application under test is a public demonstration website used for learning and testing purposes.
+
+
+## Playwright Test Execution Results
+
+**Total Tests:** 14  
+**Passed:** 14  
+**Failed:** 0
+
+### Test Report Screenshots
+
+![Playwright Test Results - Part 1](Screenshots/playwright-test-results.png)
+
+![Playwright Test Results - Part 2](Screenshots/playwright-test-results2-.png)
+
