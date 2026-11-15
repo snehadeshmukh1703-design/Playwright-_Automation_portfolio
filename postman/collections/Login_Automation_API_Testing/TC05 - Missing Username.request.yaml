@@ -1,0 +1,33 @@
+$kind: http-request
+url: https://the-internet.herokuapp.com/api/sessions
+method: POST
+body:
+  type: json
+  content: "\r
+
+    {\r
+
+    \  \"password\": \"SuperSecretPassword!\"\r
+
+    }\r\n"
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test('Status code is 400', () => {\r
+
+      \  pm.response.to.have.status(400);\r
+
+      });\r
+
+      \r
+
+      pm.test('Username required error is correct', () => {\r
+
+      \  const response = pm.response.json();\r
+
+      \  pm.expect(response.error).to.eql('username is required');\r
+
+      });\r\n"
+    language: text/javascript
+order: 5000

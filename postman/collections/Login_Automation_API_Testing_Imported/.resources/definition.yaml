@@ -1,0 +1,2 @@
+$kind: collection
+description: Five demo authentication POST API tests for Playwright portfolio. Includes response assertions; response-time threshold is informational and network-sensitive.

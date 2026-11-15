@@ -1,0 +1,35 @@
+$kind: http-request
+url: https://the-internet.herokuapp.com/api/sessions
+method: POST
+body:
+  type: json
+  content: "\r
+
+    {\r
+
+    \  \"username\": \"wronguser\",\r
+
+    \  \"password\": \"SuperSecretPassword!\"\r
+
+    }\r\n"
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test('Status code is 401', () => {\r
+
+      \  pm.response.to.have.status(401);\r
+
+      });\r
+
+      \r
+
+      pm.test('Invalid username error is correct', () => {\r
+
+      \  const response = pm.response.json();\r
+
+      \  pm.expect(response.error).to.eql('Invalid username or password');\r
+
+      });\r\n"
+    language: text/javascript
+order: 4000

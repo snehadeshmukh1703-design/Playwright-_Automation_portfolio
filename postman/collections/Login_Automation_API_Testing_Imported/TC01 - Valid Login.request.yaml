@@ -1,0 +1,30 @@
+$kind: http-request
+description: "Practice authentication validation: expected HTTP 200. Demo-only credentials."
+url: https://the-internet.herokuapp.com/api/sessions
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "tomsmith",
+      "password": "SuperSecretPassword!"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', () => {
+        pm.response.to.have.status(200);
+      });
+
+      pm.test('Username is correct', () => {
+        const response = pm.response.json();
+        pm.expect(response.username).to.eql('tomsmith');
+      });
+
+      pm.test('Response time is under 3000 ms', () => {
+        pm.expect(pm.response.responseTime).to.be.below(3000);
+      });
+    language: text/javascript
+order: 1000

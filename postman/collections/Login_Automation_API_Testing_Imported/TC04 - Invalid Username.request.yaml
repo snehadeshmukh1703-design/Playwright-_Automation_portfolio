@@ -1,0 +1,26 @@
+$kind: http-request
+description: "Practice authentication validation: expected HTTP 401. Demo-only credentials."
+url: https://the-internet.herokuapp.com/api/sessions
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "wronguser",
+      "password": "SuperSecretPassword!"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 401', () => {
+        pm.response.to.have.status(401);
+      });
+
+      pm.test('Expected error message is correct', () => {
+        const response = pm.response.json();
+        pm.expect(response.error).to.eql('Invalid username or password');
+      });
+    language: text/javascript
+order: 4000

@@ -1,0 +1,25 @@
+$kind: http-request
+description: "Practice authentication validation: expected HTTP 400. Demo-only credentials."
+url: https://the-internet.herokuapp.com/api/sessions
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "password": "SuperSecretPassword!"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400', () => {
+        pm.response.to.have.status(400);
+      });
+
+      pm.test('Expected error message is correct', () => {
+        const response = pm.response.json();
+        pm.expect(response.error).to.eql('username is required');
+      });
+    language: text/javascript
+order: 5000

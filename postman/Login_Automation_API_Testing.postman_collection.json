@@ -1,0 +1,288 @@
+{
+  "info": {
+    "name": "Login_Automation_API_Testing_Imported",
+    "description": "Five demo authentication POST API tests for Playwright portfolio. Includes response assertions; response-time threshold is informational and network-sensitive.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "TC01 - Valid Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Username is correct', () => {",
+              "  const response = pm.response.json();",
+              "  pm.expect(response.username).to.eql('tomsmith');",
+              "});",
+              "",
+              "pm.test('Response time is under 3000 ms', () => {",
+              "  pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"tomsmith\",\n  \"password\": \"SuperSecretPassword!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/api/sessions",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "api",
+            "sessions"
+          ]
+        },
+        "description": "Practice authentication validation: expected HTTP 200. Demo-only credentials."
+      },
+      "response": []
+    },
+    {
+      "name": "TC02 - Invalid Password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 401', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test('Expected error message is correct', () => {",
+              "  const response = pm.response.json();",
+              "  pm.expect(response.error).to.eql('Invalid username or password');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"tomsmith\",\n  \"password\": \"wrongpassword\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/api/sessions",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "api",
+            "sessions"
+          ]
+        },
+        "description": "Practice authentication validation: expected HTTP 401. Demo-only credentials."
+      },
+      "response": []
+    },
+    {
+      "name": "TC03 - Missing Password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 400', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test('Expected error message is correct', () => {",
+              "  const response = pm.response.json();",
+              "  pm.expect(response.error).to.eql('password is required');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"tomsmith\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/api/sessions",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "api",
+            "sessions"
+          ]
+        },
+        "description": "Practice authentication validation: expected HTTP 400. Demo-only credentials."
+      },
+      "response": []
+    },
+    {
+      "name": "TC04 - Invalid Username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 401', () => {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test('Expected error message is correct', () => {",
+              "  const response = pm.response.json();",
+              "  pm.expect(response.error).to.eql('Invalid username or password');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"wronguser\",\n  \"password\": \"SuperSecretPassword!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/api/sessions",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "api",
+            "sessions"
+          ]
+        },
+        "description": "Practice authentication validation: expected HTTP 401. Demo-only credentials."
+      },
+      "response": []
+    },
+    {
+      "name": "TC05 - Missing Username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 400', () => {",
+              "  pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test('Expected error message is correct', () => {",
+              "  const response = pm.response.json();",
+              "  pm.expect(response.error).to.eql('username is required');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"password\": \"SuperSecretPassword!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/api/sessions",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "api",
+            "sessions"
+          ]
+        },
+        "description": "Practice authentication validation: expected HTTP 400. Demo-only credentials."
+      },
+      "response": []
+    }
+  ]
+}
