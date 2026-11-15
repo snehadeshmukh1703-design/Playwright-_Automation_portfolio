@@ -164,7 +164,6 @@ It was developed as a hands-on learning project to strengthen my automation test
 
 ### Test Report Screenshots
 
-![Playwright Test Results - Part 1](Screenshots/playwright-test-results.png)
+![Playwright Test Results - Part 1](screenshots/playwright-test-results.png)
 
-![Playwright Test Results - Part 2](Screenshots/playwright-test-results2-.png)
-
+![Playwright Test Results - Part 2](screenshots/playwright-test-results2-.png)
