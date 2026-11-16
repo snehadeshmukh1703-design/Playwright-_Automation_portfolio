@@ -166,3 +166,11 @@ This project was developed as part of my practical learning journey in software 
 It demonstrates foundational knowledge of UI automation, API testing, test framework organization, reusable code, and test execution reporting.
 
 **Note:** The UI application is a publicly available demonstration website used for educational testing purposes.
+
+### Newman API Test Execution Results
+
+**API Requests:** 5  
+**Assertions Passed:** 11  
+**Assertions Failed:** 0
+
+![Newman API Test Results](screenshots/newman_api_results.png)
