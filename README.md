@@ -1,33 +1,45 @@
-
 # Login Automation Testing Framework
 
-**UI and API Automation using Playwright, JavaScript, Postman and Newman**
+**UI Automation with Playwright & JavaScript | API Testing with Postman & Newman**
+
+A hands-on automation testing portfolio project demonstrating functional UI testing, data-driven testing, reusable Page Object Model design, API validation, and automated test execution.
 
 ## Project Overview
 
-This project demonstrates automated testing of login functionality using Playwright with JavaScript for UI automation and Postman with Newman for API testing.
+This project focuses on automating login functionality using Playwright with JavaScript and practicing API testing using Postman and Newman.
 
-The project covers positive and negative login scenarios, reusable page methods, data-driven testing, API response validation and automated test reporting.
+**UI Application Under Test:** https://the-internet.herokuapp.com/login
 
-**Application Under Test:** https://the-internet.herokuapp.com/login
+### Test Execution Summary
 
-This is a hands-on automation testing project developed for learning and portfolio purposes.
+| Test Metric | Result |
+|---|---|
+| Playwright UI Tests | 14 Passed |
+| UI Test Failures | 0 |
+| Postman API Requests | 5 Executed |
+| API Assertions | 11 Passed |
+| Failed API Assertions | 0 |
 
-## Technologies Used
+*Results from the latest recorded local test execution.*
 
-- JavaScript
-- Playwright
-- Node.js
-- Visual Studio Code
-- Postman
-- Newman
-- Git and GitHub
+## Technologies and Tools
 
-## UI Automation - Playwright
+| Technology | Purpose |
+|---|---|
+| JavaScript | Automation scripting |
+| Playwright | UI test automation |
+| Node.js | JavaScript runtime |
+| Visual Studio Code | Development environment |
+| Postman | API testing |
+| Newman | Command-line API test execution |
+| Git | Version control |
+| GitHub | Source code and portfolio hosting |
 
-Implemented 14 automated UI test cases covering login functionality.
+## UI Automation — Playwright
 
-### Test Scenarios
+### Test Coverage
+
+The UI automation suite contains 14 tests covering:
 
 - Login with valid credentials
 - Login with invalid username
@@ -36,23 +48,27 @@ Implemented 14 automated UI test cases covering login functionality.
 - Logout functionality
 - Secure page access validation
 - Access restriction after logout
-- Data-driven login testing
+- Data-driven login scenarios
 - Username case sensitivity
 - Password validation
 
-### Framework Concepts
+### Framework Design
 
-- Page Object Model (POM)
-- Reusable locators and methods
-- Data-driven testing using JavaScript arrays
-- Playwright assertions
-- Browser automation
-- HTML test reporting
-- Failure screenshots and traces
+**Page Object Model (POM)**
 
-## API Testing - Postman and Newman
+Reusable locators and page actions are maintained separately from test cases to improve readability and maintainability.
 
-Implemented five authentication API test scenarios.
+**Data-Driven Testing**
+
+JavaScript arrays are used to execute multiple login scenarios using different test inputs.
+
+**Assertions and Reporting**
+
+Playwright assertions validate application behavior. HTML reports, screenshots, and traces support test result analysis and debugging.
+
+## API Testing — Postman & Newman
+
+The API testing collection contains five authentication-related test scenarios.
 
 | Test Scenario | Expected HTTP Status |
 |---|---|
@@ -62,108 +78,91 @@ Implemented five authentication API test scenarios.
 | Invalid username | 401 |
 | Missing username | 400 |
 
-### API Validations
+### API Testing Concepts
 
 - HTTP status code validation
 - Response body validation
-- Error message validation
-- Positive and negative API testing
-- Automated assertions
-- Command-line execution using Newman
+- Error message verification
+- Positive and negative testing
+- Postman test assertions
+- Collection execution using Newman
 
-## Test Execution Results
-
-**Latest verified local execution**
-
-| Test Type | Result |
-|---|---|
-| UI Automation | 14 tests passed |
-| API Testing | 5 requests executed |
-| API Assertions | 11 passed |
-| Failed API Assertions | 0 |
-
-These results represent successful local test execution.
+The Postman collection is maintained separately from the Playwright UI test suite.
 
 ## Project Structure
 
-- `pages/LoginPage.js` - Reusable Page Object Model
-- `tests/login.spec.js` - Login automation test cases
-- `tests/login-data.spec.js` - Data-driven test cases
-- `postman/Login_Automation_API_Testing.postman_collection.json` - Exported API collection
-- `playwright.config.js` - Playwright configuration
-- `package.json` - Project dependencies
-- `.gitignore` - Excluded files and folders
-- `README.md` - Project documentation
+- `pages/LoginPage.js` — Reusable Page Object Model
+- `tests/login.spec.js` — Login automation test cases
+- `tests/login-data.spec.js` — Data-driven login tests
+- `postman/Login_Automation_API_Testing.postman_collection.json` — API test collection
+- `screenshots/` — Playwright execution evidence
+- `playwright.config.js` — Playwright configuration
+- `package.json` — Dependencies and scripts
+- `.gitignore` — Excluded generated and local files
+- `README.md` — Project documentation
 
-## Installation
+## Installation and Setup
 
-1. Install Node.js.
-2. Clone this GitHub repository.
-3. Open the project folder in Visual Studio Code.
-4. Open the VS Code terminal.
-5. Install project dependencies:
+1. Install Node.js and Visual Studio Code.
+2. Clone this repository from GitHub.
+3. Open the project folder in VS Code.
+4. Open the integrated terminal.
+5. Install dependencies using `npm ci` (if a lockfile exists) or `npm install`.
+6. Install the Playwright browser dependencies using `npx playwright install`.
 
-    npm ci
+**Browser configuration:** The successful local UI execution used Microsoft Edge. When `channel: 'msedge'` is configured in `playwright.config.js`, Microsoft Edge must be installed on the machine.
 
-6. Install the Chromium browser:
+## Execute UI Tests
 
-    npx playwright install chromium
+Run all Playwright tests:
 
-## Run UI Automation Tests
+`npx playwright test`
 
-Execute the login automation tests:
+Run tests in headed mode, one worker at a time:
 
-    npx playwright test tests/login.spec.js tests/login-data.spec.js
+`npx playwright test --headed --workers=1`
 
-## View Playwright HTML Report
+Open the Playwright HTML report:
 
-Generate and open the latest HTML report:
+`npx playwright show-report`
 
-    npx playwright show-report
+## Execute API Tests
 
-## Run API Tests Using Newman
+Run the exported Postman collection using Newman:
 
-Install Newman if it is not already available:
+`npx newman run postman/Login_Automation_API_Testing.postman_collection.json`
 
-    npm install -g newman
+## Playwright Test Execution Evidence
 
-Execute the exported Postman collection:
+**Total Tests: 14 | Passed: 14 | Failed: 0**
 
-    npx newman run postman/Login_Automation_API_Testing.postman_collection.json
+### Report Screenshot — Part 1
 
-## Learning Outcomes
+![Playwright Test Results Part 1](screenshots/playwright-test-results.png)
 
-Through this hands-on project, I practiced:
+### Report Screenshot — Part 2
 
-- Writing automated test cases using Playwright
-- Understanding JavaScript-based automation
-- Implementing Page Object Model (POM)
-- Creating reusable test methods
+![Playwright Test Results Part 2](screenshots/playwright-test-results2-.png)
+
+## Key Learning Outcomes
+
+Through this project, I gained hands-on practice in:
+
+- Designing and executing automated test cases
+- Working with JavaScript and Playwright
+- Implementing Page Object Model
+- Building reusable test methods
 - Performing data-driven testing
 - Validating positive and negative scenarios
-- Writing API assertions in Postman
-- Executing API collections using Newman
-- Understanding test reports and debugging
-- Organizing an automation testing project
-- Using Git and GitHub for version control
+- Testing APIs using Postman
+- Running API collections through Newman
+- Debugging failures and reviewing test reports
+- Maintaining project code with Git and GitHub
 
 ## Project Purpose
 
-This project demonstrates practical knowledge of UI automation, API validation, reusable test design and command-line test execution.
+This project was developed as part of my practical learning journey in software automation testing.
 
-It was developed as a hands-on learning project to strengthen my automation testing skills and build a professional GitHub portfolio.
+It demonstrates foundational knowledge of UI automation, API testing, test framework organization, reusable code, and test execution reporting.
 
-**Note:** The application under test is a public demonstration website used for learning and testing purposes.
-
-
-## Playwright Test Execution Results
-
-**Total Tests:** 14  
-**Passed:** 14  
-**Failed:** 0
-
-### Test Report Screenshots
-
-![Playwright Test Results - Part 1](screenshots/playwright-test-results.png)
-
-![Playwright Test Results - Part 2](screenshots/playwright-test-results2-.png)
+**Note:** The UI application is a publicly available demonstration website used for educational testing purposes.
